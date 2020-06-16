@@ -1,29 +1,15 @@
 # github-public-repository-list
 
-## Project setup
+## Running Project
+
 ```
+npm:
+npm run install
+npm run serve
+
+yarn:
 yarn install
-```
-
-### Compiles and hot-reloads for development
-```
 yarn serve
-```
 
-### Compiles and minifies for production
+default demo url is http://localhost:8080/
 ```
-yarn build
-```
-
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
