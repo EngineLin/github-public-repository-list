@@ -46,6 +46,11 @@ p {
   background: white;
   box-shadow: 4px 4px 12px 1px rgba(0, 0, 0, 0.2);
   line-height: 1.5;
+  transition: box-shadow 300ms ease;
+}
+
+.container:hover {
+  box-shadow: 4px 4px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
 h3 {

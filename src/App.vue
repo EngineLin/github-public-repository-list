@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <!--    <div class="background-image" />-->
+    <div class="background-image" :style="backgroundImageStyle" />
+
     <h1>GitHub public repository list</h1>
     <div class="item-container">
       <Item v-for="item in data" :key="item.id" :item="item" />
@@ -12,6 +13,7 @@
 import { fetchUserRepos } from "@/apis/github.js";
 import GitHubParser from "@/utils/parsers/GitHubParser.js";
 import Item from "@/components/Item.vue";
+import image from "@/assets/background-image.png";
 
 export default {
   name: "App",
@@ -23,6 +25,7 @@ export default {
       rowData: [],
       data: [],
       isLazyLoad: false,
+      backgroundImageTop: 0,
 
       LAZY_LOAD_SIZE: 5,
       LAZY_LOAD_BUFFER: 20
@@ -38,16 +41,26 @@ export default {
       this.isLazyLoad = false;
     }
   },
+  computed: {
+    backgroundImageStyle() {
+      console.log(this.backgroundImageTop);
+      return {
+        backgroundImage: `url(${image})`,
+        top: `${this.backgroundImageTop}px`
+      };
+    }
+  },
   mounted() {
     this.init();
   },
   methods: {
     init() {
-      document.addEventListener("scroll", this.eventScroll);
-      this.$on(
-        "beforeDestroy",
-        () => void removeEventListener("scroll", this.eventScroll)
-      );
+      document.addEventListener("scroll", this.lazyLoadEventScroll);
+      document.addEventListener("scroll", this.parallaxEventScroll);
+      this.$on("beforeDestroy", () => {
+        removeEventListener("scroll", this.lazyLoadEventScroll);
+        removeEventListener("scroll", this.parallaxEventScroll);
+      });
 
       const myGithubName = "enginelin";
       fetchUserRepos(myGithubName).then(res => {
@@ -55,7 +68,7 @@ export default {
         this.isLazyLoad = true;
       });
     },
-    eventScroll(e) {
+    lazyLoadEventScroll(e) {
       if (this.isLazyLoad) return;
       const {
         clientHeight,
@@ -67,6 +80,10 @@ export default {
       if (scrollTop + this.LAZY_LOAD_BUFFER >= scrollableHeight) {
         this.isLazyLoad = true;
       }
+    },
+    parallaxEventScroll(e) {
+      const { scrollTop } = e.target.scrollingElement;
+      this.backgroundImageTop = -Math.floor(scrollTop / 10);
     }
   }
 };
@@ -84,12 +101,26 @@ export default {
 }
 
 .background-image {
-  width: 100vw;
-  height: 100vh;
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  top: -100;
+  width: 100%;
+  height: 150%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .item-container {
   max-width: 1000px;
+  padding: 20px;
+  border-radius: 15px;
   margin: 0 auto;
+  background: #ddf3f5;
+}
+
+h1 {
+  color: white;
 }
 </style>
