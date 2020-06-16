@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-const CREATED_AT_DATE_FORMAT_RULE = "YYYY年MM月DD日";
+export const CREATED_AT_DATE_FORMAT_RULE = "YYYY年MM月DD日";
 
 class GitHubParser {
   // Have to had those properties by the guild line.
@@ -23,7 +23,8 @@ class GitHubParser {
     this.description = description;
     this.url = html_url;
     this.id = id;
-    this.createdAt = dayjs(created_at).format(CREATED_AT_DATE_FORMAT_RULE);
+    this.createdAt =
+      created_at && dayjs(created_at).format(CREATED_AT_DATE_FORMAT_RULE);
   }
 
   static parse({ name, description, html_url, id, created_at } = {}) {

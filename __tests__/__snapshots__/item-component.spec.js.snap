@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item component should render with GitHubParser.empty() when props item has no data 1`] = `
+<body>
+  <div>
+    <div
+      class="container"
+    >
+      <h3>
+        unknown
+      </h3>
+       
+      <div
+        class="wrapper"
+      >
+        <p
+          class="label"
+        >
+          Description:
+        </p>
+         
+        <p
+          class="warning"
+        >
+          
+      Has not description in this project.
+    
+        </p>
+      </div>
+       
+      <div
+        class="wrapper"
+      >
+        <p
+          class="label"
+        >
+          Link:
+        </p>
+         
+        <a
+          href="#"
+          rel="noopener noreferrer nofollow"
+          target="_blank"
+        >
+          <p>
+            unknown
+          </p>
+        </a>
+      </div>
+       
+      <p
+        class="created-at"
+      >
+        <span
+          style="color: red;"
+        >
+          Created at 
+        </span>
+        
+    unknown
+  
+      </p>
+    </div>
+  </div>
+</body>
+`;

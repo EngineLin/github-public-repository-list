@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3>{{ item.title }}</h3>
+    <h3>{{ item.title || "unknown" }}</h3>
 
     <div class="wrapper">
       <p class="label">Description:</p>
@@ -11,14 +11,18 @@
 
     <div class="wrapper">
       <p class="label">Link:</p>
-      <a :href="item.url" target="_blank" rel="noopener noreferrer nofollow">
-        <p>{{ item.url }}</p>
+      <a
+        :href="item.url || '#'"
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+      >
+        <p>{{ item.url || "unknown" }}</p>
       </a>
     </div>
 
     <p class="created-at">
       <span :style="{ color: 'red' }">Created at </span>
-      {{ item.createdAt }}
+      {{ item.createdAt || "unknown" }}
     </p>
   </div>
 </template>
