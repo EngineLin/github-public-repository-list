@@ -15,6 +15,11 @@
         <p>{{ item.url }}</p>
       </a>
     </div>
+
+    <p class="created-at">
+      <span :style="{ color: 'red' }">Created at </span>
+      {{ item.createdAt }}
+    </p>
   </div>
 </template>
 
@@ -39,7 +44,7 @@ p {
 
 .container {
   width: 100%;
-  padding: 20px 0;
+  padding: 20px;
   margin: 20px 0;
   border-radius: 10px;
   box-sizing: border-box;
@@ -68,7 +73,7 @@ h3 {
 }
 
 .wrapper {
-  padding: 10px 20px;
+  padding: 10px 0;
   display: flex;
   align-items: center;
 }
@@ -77,7 +82,7 @@ h3 {
   color: #fbd46d;
 }
 
-a {
-  underline: unset;
+.created-at {
+  text-align: end;
 }
 </style>

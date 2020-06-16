@@ -63,8 +63,9 @@ export default {
 
       const myGithubName = "enginelin";
       fetchUserRepos(myGithubName).then(res => {
-        console.log(res.data[0]);
-        this.rowData = res.data.map(it => GitHubParser.parse(it));
+        this.rowData = res.data
+          .map(it => GitHubParser.parse(it))
+          .sort((a, b) => b.id - a.id);
         this.isLazyLoad = true;
       });
     },
