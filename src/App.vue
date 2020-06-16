@@ -43,7 +43,6 @@ export default {
   },
   computed: {
     backgroundImageStyle() {
-      console.log(this.backgroundImageTop);
       return {
         backgroundImage: `url(${image})`,
         top: `${this.backgroundImageTop}px`
@@ -64,6 +63,7 @@ export default {
 
       const myGithubName = "enginelin";
       fetchUserRepos(myGithubName).then(res => {
+        console.log(res.data[0]);
         this.rowData = res.data.map(it => GitHubParser.parse(it));
         this.isLazyLoad = true;
       });

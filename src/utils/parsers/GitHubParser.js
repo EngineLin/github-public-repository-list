@@ -12,21 +12,28 @@ class GitHubParser {
   constructor(
     name = "",
     description = "",
-    url = "",
+    html_url = "",
     id = -1,
     create_at = "",
     git_url = ""
   ) {
     this.title = name;
     this.description = description;
-    this.url = url;
+    this.url = html_url;
     this.id = id;
     this.createdAt = create_at;
     this.gitUrl = git_url;
   }
 
-  static parse({ name, description, url, id, create_at, git_url } = {}) {
-    return new GitHubParser(name, description, url, id, create_at, git_url);
+  static parse({ name, description, html_url, id, create_at, git_url } = {}) {
+    return new GitHubParser(
+      name,
+      description,
+      html_url,
+      id,
+      create_at,
+      git_url
+    );
   }
 
   static empty() {
